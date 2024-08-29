@@ -28,7 +28,7 @@
     "jsx": "preserve",
     "incremental": true,
     "useDefineForClassFields": true,
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata", "node"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
