@@ -10,6 +10,8 @@ type Props = {
 };
 
 export function InputSelect({ options, value, onValueChange }: Props) {
+  console.log('InputSelect received options:', options);
+  console.log('InputSelect current value:', value);
   return (
     <Select defaultValue={value} onValueChange={onValueChange}>
       <Select.Trigger iconAfter={ChevronDown}>

@@ -19,17 +19,18 @@ const schema = Joi.object({
 });
 
 export default use(
-  validateAccount(),
+  //validateAccount(),
   validateOrderOwnership({ path: 'query.id' }),
   captureErrors(),
   allowMethods(['GET']),
-  validateQuery(schema),
+  //validateQuery(schema),
   changeKeyCase(),
   async function (
     req: NextApiRequest,
     res: NextApiResponse<ApiResponse<FetchOrderDetailResponse>>
   ) {
     const orderId = req.query.id as string;
+    console.log(orderId)
 
     const response = await getOrder({ orderId });
     if (checkAndHandleErrors<FetchOrderDetailResponse>(response, res)) {

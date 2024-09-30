@@ -12,6 +12,8 @@ type OrderInput = {
 export async function getOrder({ orderId }: OrderInput) {
   const client = getSwellClient();
 
+  console.log(orderId)
+
   const response = await client.get(`/orders/${orderId}`, {
     expand: ['account', 'items.product', 'shipments'],
     include: {
@@ -24,8 +26,10 @@ export async function getOrder({ orderId }: OrderInput) {
     },
     limit: appConfig.ordersPaginationLimit,
   });
+  console.log('order success')
   client.close();
 
+  console.log(response)
   return response as FetchOrderDetailResponse;
 }
 

@@ -14,6 +14,7 @@ type Props = {
 };
 
 export const StockForm = observer(function StockForm({ onSave, variant }: Props) {
+ 
   const presenter = useProductFormPresenterContext();
   const {
     setVariant,
@@ -30,10 +31,13 @@ export const StockForm = observer(function StockForm({ onSave, variant }: Props)
     }
   }, [setVariant, variant]);
 
+  console.log(productOptions)
+
   return (
     <YStack space="$4">
       {productOptions.map((option) => (
-        <YStack key={option.id} space="$2">
+
+        <YStack key={option.id!} space="$2">
           <BodyText bold>{option.name}</BodyText>
           <InputSelect
             onValueChange={handleOptionValueChange(option)}

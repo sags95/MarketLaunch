@@ -36,6 +36,7 @@ export default use(
     res: NextApiResponse<ApiResponse<FetchOrdersSwellResponse>>
   ) {
     const client = getSwellClient();
+    console.log(req.query.search);
 
     const filters = {
       paid: req.query.paid,
@@ -57,20 +58,26 @@ export default use(
         };
 
     let response: FetchOrdersSwellResponse;
+    console.log(accountFilter);
     try {
       response = await client.get('/orders', {
         expand: ['account', 'shipments'],
         limit: limit || appConfig.ordersPaginationLimit,
         page,
         search: req.query.search,
+        // where: {
+        //   ...accountFilter,
+        //   ...filters,
+        // },
         where: {
-          ...accountFilter,
-          ...filters,
-        },
+          '$elemMatch': {'vendor_id': accountId}
+        }
       });
     } finally {
       client.close();
     }
+
+    console.log(response);
 
     if (checkAndHandleErrors<FetchOrdersSwellResponse>(response, res)) {
       return;

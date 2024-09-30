@@ -33,7 +33,7 @@ const schema = Joi.object({
 });
 
 export default use(
-  validateAccount(),
+  //validateAccount(),
   validateOrderOwnership({ path: 'body.orderId' }),
   captureErrors(),
   allowMethods(['POST']),

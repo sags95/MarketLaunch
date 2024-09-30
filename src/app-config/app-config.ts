@@ -120,7 +120,7 @@ export const appConfig: AppConfig = {
   },
   theme: {
     appName: 'MarketLaunch',
-    logo: '/app-logo.png',
+    logo: '/app-logo.jpeg',
     colors: {
       colorA: '#006f79',
       colorB: '#fafafa',
